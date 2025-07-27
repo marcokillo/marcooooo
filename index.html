@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>معمای جنایی</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f2f2f2;
+      font-family: 'Tahoma', sans-serif;
+      direction: rtl;
+      text-align: center;
+      padding: 50px;
+    }
+    input, button {
+      font-size: 18px;
+      padding: 10px;
+      margin: 20px;
+    }
+    img {
+      max-width: 80%;
+      border: 2px solid #00ffcc;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🕵️‍♂️ معمای جنایی</h1>
+  <img src="puzzle_page_1.png" alt="معما" />
+
+  <form id="answerForm">
+    <input type="text" id="answer" placeholder="جواب را وارد کنید" />
+    <button type="submit">بررسی</button>
+  </form>
+
+  <script>
+    document.getElementById('answerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const correctAnswer = "همه‌چی ثبت می‌شه. حتی وقتی هیچ‌کس تماشا نمی‌کنه. بعضی جواب‌ها توی پرونده نیستن، پشت پرده‌ان. اون‌جاست. از اول بوده.";
+      const userAnswer = document.getElementById('answer').value.trim();
+      if (userAnswer === correctAnswer) {
+        window.location.href = "answer.html";
+      } else {
+        alert("جواب اشتباه است. دوباره تلاش کن.");
+      }
+    });
+  </script>
+
+</body>
+</html>
