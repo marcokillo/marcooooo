@@ -2,98 +2,48 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>راز نهایی</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>جواب صحیح</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Mirza&display=swap');
-    
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
-      font-family: 'Mirza', cursive;
+      background-color: #101010;
+      color: #00ffcc;
+      font-family: 'Courier New', monospace;
       direction: rtl;
-      color: #0ff;
-      text-shadow: 0 0 5px #0ff;
-      touch-action: manipulation;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      user-select: none;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .flashlight {
-      position: fixed;
-      width: 200px;
-      height: 200px;
-      pointer-events: none;
-      border-radius: 50%;
-      box-shadow: 0 0 0 9999px rgba(0,0,0,0.98), 
-                  0 0 30px 15px #0ff44 inset,
-                  0 0 50px 30px #0ff22;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      mix-blend-mode: screen;
-      transition: transform 0.1s ease-out;
+    .container {
+      max-width: 800px;
+      background-color: #181818;
+      border: 2px solid #00ffcc;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffcc33;
+      text-align: center;
     }
 
-    /* بقیه استایل‌ها مانند قبل... */
+    .quote {
+      font-size: 22px;
+      line-height: 2.2;
+      white-space: pre-line;
+    }
   </style>
 </head>
 <body>
 
-<div class="flashlight" id="flashlight"></div>
-
-<!-- بقیه المان‌ها مانند قبل... -->
-
-<script>
-  const flashlight = document.getElementById('flashlight');
-  
-  // تنظیمات اولیه برای موقعیت چراغ قوه
-  flashlight.style.left = '50%';
-  flashlight.style.top = '50%';
-  
-  // تابع مشترک برای حرکت چراغ قوه
-  function moveLight(x, y) {
-    flashlight.style.left = x + 'px';
-    flashlight.style.top = y + 'px';
-    
-    // افکت بزرگنمایی هنگام حرکت سریع
-    const movement = Math.min(Math.abs(x - parseFloat(flashlight.style.left)), 
-                       Math.abs(y - parseFloat(flashlight.style.top))) / 10;
-    flashlight.style.transform = translate(-50%, -50%) scale(${1 + movement/20});
-  }
-
-  // رویدادهای موبایل
-  document.addEventListener('touchstart', handleTouch, {passive: true});
-  document.addEventListener('touchmove', handleTouch, {passive: true});
-  
-  function handleTouch(e) {
-    e.preventDefault();
-    if (e.touches.length > 0) {
-      const touch = e.touches[0];
-      moveLight(touch.clientX, touch.clientY);
-    }
-  }
-
-  // رویدادهای دسکتاپ
-  document.addEventListener('mousemove', (e) => {
-    moveLight(e.clientX, e.clientY);
-  });
-
-  // فعال کردن چراغ قوه پس از اولین تعامل کاربر
-  function enableFlashlight() {
-    document.body.classList.add('flashlight-enabled');
-    document.removeEventListener('touchstart', enableFlashlight);
-    document.removeEventListener('mousedown', enableFlashlight);
-  }
-  
-  document.addEventListener('touchstart', enableFlashlight, {once: true});
-  document.addEventListener('mousedown', enableFlashlight, {once: true});
-
-  // بقیه اسکریپت‌ها مانند قبل...
-</script>
+<div class="container">
+  <div class="quote">
+    همه‌چی ثبت می‌شه.<br>
+    حتی وقتی هیچ‌کس تماشا نمی‌کنه.<br>
+    بعضی جواب‌ها توی پرونده نیستن، پشت پرده‌ان.<br>
+    اون‌جاست. از اول بوده.
+  </div>
+</div>
 
 </body>
 </html>
