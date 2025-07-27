@@ -4,68 +4,54 @@
 <head>
   <meta charset="UTF-8">
   <title>جواب رمزگشایی شد</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      background: url('https://wallpapers.com/images/featured/mysterious-dgaeqv30qakx8ow0.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #00ffcc;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
       font-family: 'Courier New', monospace;
       direction: rtl;
-      margin: 0;
-      overflow: hidden;
+      color: #00ffcc;
+    }
+
+    .flashlight {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+      border-radius: 50%;
+      box-shadow: 0 0 0 9999px rgba(0,0,0,0.95), 0 0 30px 15px #00ffcc44 inset;
+      transform: translate(-50%, -50%);
+      z-index: 10;
     }
 
     .container {
       position: relative;
-      height: 100vh;
+      z-index: 1;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
       text-align: center;
-      z-index: 1;
+      padding: 20px;
     }
 
     .quote {
       font-size: 24px;
-      padding: 30px;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.6);
       border: 2px solid #00ffcc;
+      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 20px #00ffcc55;
-      z-index: 2;
+      box-shadow: 0 0 20px #00ffcc33;
     }
-
-    .smoke {
-      position: absolute;
-      bottom: -100px;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(200,200,200,0.05) 0%, transparent 70%);
-      animation: smokeUp 10s infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes smokeUp {
-      0% {
-        transform: translateY(100%) scale(1);
-        opacity: 0.1;
-      }
-      50% {
-        opacity: 0.2;
-      }
-      100% {
-        transform: translateY(-100%) scale(1.5);
-        opacity: 0;
-      }
-    }
-
   </style>
 </head>
 <body>
 
-<div class="smoke"></div>
+<div class="flashlight" id="flashlight"></div>
 
 <div class="container">
   <div class="quote">
@@ -75,6 +61,25 @@
     اون‌جاست. از اول بوده
   </div>
 </div>
+
+<script>
+  const flashlight = document.getElementById('flashlight');
+
+  function moveLight(x, y) {
+    flashlight.style.left = x + 'px';
+    flashlight.style.top = y + 'px';
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    moveLight(e.clientX, e.clientY);
+  });
+
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      moveLight(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+</script>
 
 </body>
 </html>
