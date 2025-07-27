@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -6,22 +5,55 @@
   <title>معمای جنایی</title>
   <style>
     body {
-      background-color: #121212;
-      color: #f2f2f2;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #00ffcc;
       font-family: 'Tahoma', sans-serif;
       direction: rtl;
       text-align: center;
       padding: 50px;
     }
-    input, button {
-      font-size: 18px;
-      padding: 10px;
-      margin: 20px;
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #00ffcc;
     }
+
     img {
       max-width: 80%;
       border: 2px solid #00ffcc;
       margin-bottom: 30px;
+      box-shadow: 0 0 20px #00ffcc44;
+      border-radius: 12px;
+    }
+
+    input {
+      font-size: 20px;
+      padding: 20px;
+      width: 80%;
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+      border: 2px solid #00ffcc;
+      background-color: #1e1e1e;
+      color: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc55;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      border-radius: 8px;
+      border: none;
+      background-color: #00ffcc;
+      color: black;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 15px #00ffcc88;
+    }
+
+    button:hover {
+      background-color: #00e6b8;
     }
   </style>
 </head>
@@ -31,15 +63,19 @@
   <img src="puzzle_page_1.png" alt="معما" />
 
   <form id="answerForm">
-    <input type="text" id="answer" placeholder="جواب را وارد کنید" />
+    <input type="text" id="answer" placeholder="جواب را اینجا وارد کن (کامل و دقیق)" />
     <button type="submit">بررسی</button>
   </form>
 
   <script>
+    function normalize(text) {
+      return text.replace(/[\\.،٫.]/g, "").replace(/\\s+/g, " ").trim();
+    }
+
     document.getElementById('answerForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const correctAnswer = "همه‌چی ثبت می‌شه. حتی وقتی هیچ‌کس تماشا نمی‌کنه. بعضی جواب‌ها توی پرونده نیستن، پشت پرده‌ان. اون‌جاست. از اول بوده.";
-      const userAnswer = document.getElementById('answer').value.trim();
+      const correctAnswer = "همه‌چی ثبت می‌شه حتی وقتی هیچ‌کس تماشا نمی‌کنه بعضی جواب‌ها توی پرونده نیستن پشت پرده‌ان اون‌جاست از اول بوده";
+      const userAnswer = normalize(document.getElementById('answer').value);
       if (userAnswer === correctAnswer) {
         window.location.href = "answer.html";
       } else {
