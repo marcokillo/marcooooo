@@ -1,20 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>جواب رمزگشایی شد</title>
+  <title>راز نهایی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mirza&display=swap');
+    
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       background: #000;
       overflow: hidden;
-      font-family: 'Courier New', monospace;
+      font-family: 'Mirza', cursive;
       direction: rtl;
-      color: #00ffcc;
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
+      cursor: none;
     }
 
     .flashlight {
@@ -23,9 +26,13 @@
       height: 200px;
       pointer-events: none;
       border-radius: 50%;
-      box-shadow: 0 0 0 9999px rgba(0,0,0,0.95), 0 0 30px 15px #00ffcc44 inset;
+      box-shadow: 0 0 0 9999px rgba(0,0,0,0.98), 
+                  0 0 30px 15px #0ff44 inset,
+                  0 0 50px 30px #0ff22;
       transform: translate(-50%, -50%);
       z-index: 10;
+      mix-blend-mode: screen;
+      transition: transform 0.1s ease-out;
     }
 
     .container {
@@ -40,21 +47,95 @@
     }
 
     .quote {
-      font-size: 24px;
-      background-color: rgba(0, 0, 0, 0.6);
-      border: 2px solid #00ffcc;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00ffcc33;
+      font-size: 28px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 3px solid #0ff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #0ff55,
+                 0 0 60px #0ff33 inset;
+      max-width: 700px;
+      line-height: 2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #0ff, #f0f, #0ff);
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 0.3;
+      animation: gradientRotate 8s linear infinite;
+    }
+
+    .binary-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #0ff;
+      pointer-events: none;
+      z-index: 100;
+      mix-blend-mode: difference;
+      box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+      transform: translate(-50%, -50%);
+    }
+
+    .glitch {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.1"/></svg>');
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes gradientRotate {
+      0% { filter: blur(20px) hue-rotate(0deg); }
+      100% { filter: blur(20px) hue-rotate(360deg); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(-5px, -5px); }
+      60% { transform: translate(5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+      100% { transform: translate(0); }
+    }
+
+    .glitch-effect {
+      animation: glitch 0.5s infinite;
     }
   </style>
 </head>
 <body>
 
+<div class="binary-rain" id="binaryRain"></div>
 <div class="flashlight" id="flashlight"></div>
+<div class="cursor" id="cursor"></div>
+<div class="glitch"></div>
 
 <div class="container">
-  <div class="quote">
+  <div class="quote" id="quote">
     همه‌چی ثبت می‌شه<br>
     حتی وقتی هیچ‌کس تماشا نمی‌کنه<br>
     بعضی جواب‌ها توی پرونده نیستن، پشت پرده‌ان<br>
@@ -62,24 +143,4 @@
   </div>
 </div>
 
-<script>
-  const flashlight = document.getElementById('flashlight');
-
-  function moveLight(x, y) {
-    flashlight.style.left = x + 'px';
-    flashlight.style.top = y + 'px';
-  }
-
-  document.addEventListener('mousemove', (e) => {
-    moveLight(e.clientX, e.clientY);
-  });
-
-  document.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-      moveLight(e.touches[0].clientX, e.touches[0].clientY);
-    }
-  }, { passive: true });
-</script>
-
-</body>
-</html>
+<script
