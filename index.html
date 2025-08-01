@@ -76,7 +76,7 @@
 
   document.getElementById('answerForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const correctAnswer = "همه چی ثبت میشه حتی وقتی هیچکس تماشا نمیکنه بعضی جواب ها توی پرونده ان اون جاست از اول بوده";
+    const correctAnswer = "همه چی ثبت میشه حتی وقتی هیچکس تماشا نمیکنه بعضی جواب ها توی پرونده نیستن پشت پرده ان اون جاست از اول بوده";
     const userAnswer = normalize(document.getElementById('answer').value);
     const normalizedCorrectAnswer = normalize(correctAnswer);
     if (userAnswer === normalizedCorrectAnswer) {
