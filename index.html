@@ -68,21 +68,24 @@
   </form>
 
   <script>
-    function normalize(text) {
-      return text.replace(/[\\.،٫.]/g, "").replace(/\\s+/g, " ").trim();
-    }
+  function normalize(text) {
+    return text.replace(/[\\.،٫.]/g, "")
+               .replace(/\s+/g, "") // حذف تمام فاصله‌ها
+               .trim();
+  }
 
-    document.getElementById('answerForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const correctAnswer = "همه چی ثبت میشه حتی وقتی هیچکس تماشا نمیکنه بعضی جواب ها توی پرونده ان اون جاست از اول بوده";
-      const userAnswer = normalize(document.getElementById('answer').value);
-      if (userAnswer === correctAnswer) {
-        window.location.href = "answer.html";
-      } else {
-        alert("جواب اشتباه است. دوباره تلاش کن.");
-      }
-    });
-  </script>
+  document.getElementById('answerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const correctAnswer = "همه چی ثبت میشه حتی وقتی هیچکس تماشا نمیکنه بعضی جواب ها توی پرونده ان اون جاست از اول بوده";
+    const userAnswer = normalize(document.getElementById('answer').value);
+    const normalizedCorrectAnswer = normalize(correctAnswer);
+    if (userAnswer === normalizedCorrectAnswer) {
+      window.location.href = "answer.html";
+    } else {
+      alert("جواب اشتباه است. دوباره تلاش کن.");
+    }
+  });
+</script>
 
 </body>
 </html>
